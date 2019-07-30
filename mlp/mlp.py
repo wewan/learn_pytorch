@@ -54,8 +54,8 @@ class MLP(nn.Module):
             self.linears.append(nn.Linear(temp,n_hidden[i]))
             temp = n_hidden[i]
 
-        # self.relu = nn.ReLU()
-        # self.softmax = F.softmax
+        self.relu = nn.ReLU()
+        self.softmax = F.softmax
 
         ########################
         # END OF YOUR CODE    #
@@ -83,8 +83,7 @@ class MLP(nn.Module):
         for i in range(self.lth):
             x= self.linears[i](x)
             if i != self.lth - 1:
-                # x = self.relu(x)
-                nn.ReLU()
+                x = self.relu(x)
             else:
                 x = self.softmax(x)
         out = x
@@ -97,5 +96,5 @@ class MLP(nn.Module):
 
 if __name__ == '__main__':
     mlp_model = MLP(100,[10],10)
-    print(mlp_model.parameters())
+    print(i for i in mlp_model.parameters())
     print(mlp_model)
