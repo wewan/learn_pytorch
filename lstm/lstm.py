@@ -3,10 +3,6 @@ import torch.nn as nn
 import torchvision
 import torchvision.transforms as transforms
 
-# Device configuration
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-
-# Hyper-parameters
 sequence_length = 28
 input_size = 28
 hidden_size = 128
@@ -15,6 +11,10 @@ num_classes = 10
 batch_size = 100
 num_epochs = 2
 learning_rate = 0.01
+
+# Device configuration
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
 
 # MNIST dataset
 train_dataset = torchvision.datasets.MNIST(root='data/',
@@ -56,6 +56,16 @@ class RNN(nn.Module):
         # Decode the hidden state of the last time step
         out = self.fc(out[:, -1, :])
         return out
+
+# Hyper-parameters
+sequence_length = 28
+input_size = 28
+hidden_size = 128
+num_layers = 2
+num_classes = 10
+batch_size = 100
+num_epochs = 2
+learning_rate = 0.01
 
 
 model = RNN(input_size, hidden_size, num_layers, num_classes).to(device)
